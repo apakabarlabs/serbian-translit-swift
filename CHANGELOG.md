@@ -1,9 +1,11 @@
 # Changelog
 
-## 0.1.0
+## 0.4.1
 
-First release. Swift port of serbian-translit-python v0.4.1; same YAML
-rule table and test corpus, same behaviour.
+First release. Version numbered `0.4.1` to lock-step with
+[serbian-translit-python](https://github.com/apakabarlabs/serbian-translit-python)
+v0.4.1: the two share the same YAML rule table and test corpus, so
+matching `major.minor` means matching behaviour.
 
 ### Added
 
