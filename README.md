@@ -1,3 +1,6 @@
+[![Tests](https://github.com/apakabarlabs/serbian-translit-swift/actions/workflows/tests.yml/badge.svg)](https://github.com/apakabarlabs/serbian-translit-swift/actions/workflows/tests.yml)
+[![Documentation](https://github.com/apakabarlabs/serbian-translit-swift/actions/workflows/documentation.yml/badge.svg)](https://apakabarlabs.github.io/serbian-translit-swift/documentation/serbiantranslit/)
+
 # serbian-translit-swift
 
 Deterministic Serbian and Montenegrin script conversion, Cyrillic ↔ Latin.
@@ -56,3 +59,16 @@ CNR.toLat("с́евер")              // "śever"
 
 - Swift 6.0
 - iOS 15+, macOS 12+
+
+## Documentation
+
+The [Swift-DocC API reference](https://apakabarlabs.github.io/serbian-translit-swift/documentation/serbiantranslit/)
+is generated from the public API on every push to `main`.
+
+## Lines of Code
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/loc-history-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset=".github/loc-history-light.svg">
+  <img src=".github/loc-history.svg" alt="Lines of code over time">
+</picture>

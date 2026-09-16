@@ -3,13 +3,20 @@ PYTHON_TESTS_DIR = ../serbian-translit-python/tests
 SWIFT_RESOURCES_DIR = Sources/SerbianTranslit/Resources
 SWIFT_TEST_RESOURCES_DIR = Tests/SerbianTranslitTests/Resources
 
-.PHONY: build test lint lint-fix clean install sync-yaml
+.PHONY: build test docs lint lint-fix clean install sync-yaml
 
 build:
 	swift build
 
 test:
 	swift test
+
+docs:
+	swift package --allow-writing-to-directory .build/docc generate-documentation \
+		--target SerbianTranslit --output-path .build/docc \
+		--warnings-as-errors \
+		--transform-for-static-hosting \
+		--hosting-base-path serbian-translit-swift
 
 lint:
 	swiftlint
