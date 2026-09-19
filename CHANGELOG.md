@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.2
+
+### Tests
+
+- The shared corpus now covers quoted punctuation inside protected URLs and
+  single-letter Serbian words that resemble Roman numerals.
+
 ## 0.4.1
 
 First release. Version numbered `0.4.1` to lock-step with

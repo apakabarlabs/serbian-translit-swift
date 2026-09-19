@@ -17,7 +17,7 @@ Swift Package Manager. Add to `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/apakabarlabs/serbian-translit-swift", from: "0.4.1")
+    .package(url: "https://github.com/apakabarlabs/serbian-translit-swift", from: "0.4.2")
 ]
 ```
 
