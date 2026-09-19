@@ -2,11 +2,34 @@ PYTHON_DATA_DIR = ../serbian-translit-python/serbian_translit/data
 PYTHON_TESTS_DIR = ../serbian-translit-python/tests
 SWIFT_RESOURCES_DIR = Sources/SerbianTranslit/Resources
 SWIFT_TEST_RESOURCES_DIR = Tests/SerbianTranslitTests/Resources
+COMMENTCENSOR_VERSION ?= v0.3.2
+COMMENTCENSOR_ENV = .build/commentcensor
+COMMENTCENSOR = $(COMMENTCENSOR_ENV)/bin/commentcensor
 
-.PHONY: build test docs lint lint-fix clean install sync-yaml
+.DEFAULT_GOAL := build
 
-build:
-	swift build
+.PHONY: install-tools format comments lint lint-fix test-build test docs build clean install sync-yaml
+
+install-tools:
+	brew install swiftlint swift-format
+	python3 -m venv $(COMMENTCENSOR_ENV)
+	$(COMMENTCENSOR_ENV)/bin/pip install --quiet --upgrade git+https://github.com/botforge-pro/commentcensor.git@$(COMMENTCENSOR_VERSION)
+
+format:
+	swift-format format --in-place --recursive Sources Tests Package.swift
+
+comments:
+	$(COMMENTCENSOR) .
+
+lint: comments
+	swiftlint --strict
+	swift-format lint --strict --recursive Sources Tests Package.swift
+
+lint-fix:
+	$(MAKE) format
+
+test-build:
+	swift build --build-tests
 
 test:
 	swift test
@@ -18,18 +41,14 @@ docs:
 		--transform-for-static-hosting \
 		--hosting-base-path serbian-translit-swift
 
-lint:
-	swiftlint
-
-lint-fix:
-	swiftlint --fix
+build: lint test-build test docs
+	swift build
 
 clean:
 	swift package clean
-	rm -rf .build Package.resolved
 
 install:
-	brew install swiftlint
+	$(MAKE) install-tools
 
 sync-yaml:
 	cp $(PYTHON_DATA_DIR)/rules.yaml $(SWIFT_RESOURCES_DIR)/

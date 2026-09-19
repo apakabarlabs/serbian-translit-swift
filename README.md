@@ -28,14 +28,14 @@ Then depend on the `SerbianTranslit` product from your target.
 ```swift
 import SerbianTranslit
 
-SRP.toCyr("Njujork")            // "Њујорк"
-SRP.toCyr("LJUBAV")             // "ЉУБАВ"
-SRP.toCyr("New York")           // "New York" (word skipped, has non-native letters)
-SRP.toCyr("grupa „AC/DC\"")     // "група „AC/DC\"" (quoted region preserved)
-SRP.toLat("Њујорк")             // "Njujork"
+SRP.toCyr("Njujork")
+SRP.toCyr("LJUBAV")
+SRP.toCyr("New York")
+SRP.toCyr("grupa „AC/DC\"")
+SRP.toLat("Њујорк")
 
-CNR.toCyr("śever")              // "с́евер" (base + U+0301)
-CNR.toLat("с́евер")              // "śever"
+CNR.toCyr("śever")
+CNR.toLat("с́евер")
 ```
 
 ## Behaviour
