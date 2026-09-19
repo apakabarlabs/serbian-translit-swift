@@ -2,9 +2,8 @@ import Foundation
 
 final class ProtectedRegions {
   private static let quotedRe: NSRegularExpression = {
-    // swiftlint:disable:next force_try
-    try! NSRegularExpression(
-      pattern: "„[^„”“]*?[”“\"]|«[^«»]*?»|“[^“”]*?”|\"[^\"]*?\"",
+    compiledRegex(
+      "„[^„”“]*?[”“\"]|«[^«»]*?»|“[^“”]*?”|\"[^\"]*?\"",
       options: [.dotMatchesLineSeparators]
     )
   }()
@@ -17,8 +16,7 @@ final class ProtectedRegions {
       + "|[^\(stop)@]+@[^\(stop)@]+\\.[^\(stop)@]+"
       + "|#[^\(stop)#@]+"
       + "|@[^\(stop)#@]+"
-    // swiftlint:disable:next force_try
-    return try! NSRegularExpression(pattern: pattern)
+    return compiledRegex(pattern)
   }()
 
   private var slots: [(key: String, original: String)] = []

@@ -16,10 +16,15 @@ enum Table {
     return dict
   }()
 
-  // swiftlint:disable force_unwrapping
-  static let srpLatToCyr = byPair["srp-latn|srp-cyrl"]!
-  static let srpCyrToLat = byPair["srp-cyrl|srp-latn"]!
-  static let cnrLatToCyr = byPair["cnr-latn|cnr-cyrl"]!
-  static let cnrCyrToLat = byPair["cnr-cyrl|cnr-latn"]!
-  // swiftlint:enable force_unwrapping
+  static let srpLatToCyr = requiredPair("srp-latn|srp-cyrl")
+  static let srpCyrToLat = requiredPair("srp-cyrl|srp-latn")
+  static let cnrLatToCyr = requiredPair("cnr-latn|cnr-cyrl")
+  static let cnrCyrToLat = requiredPair("cnr-cyrl|cnr-latn")
+
+  private static func requiredPair(_ key: String) -> Rule {
+    guard let rule = byPair[key] else {
+      preconditionFailure("Missing bundled transliteration rule: \(key)")
+    }
+    return rule
+  }
 }

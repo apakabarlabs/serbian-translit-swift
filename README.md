@@ -4,7 +4,7 @@
 # serbian-translit-swift
 
 Deterministic Serbian and Montenegrin script conversion, Cyrillic ↔ Latin.
-Case preservation, digraph handling, quoted-region protection,
+Word-level case handling, digraph handling, quoted-region protection,
 Roman-numeral and non-native-word filtering.
 
 Swift port of [serbian-translit-python](https://github.com/apakabarlabs/serbian-translit-python).
@@ -46,12 +46,18 @@ CNR.toLat("с́евер")
   acute U+0301; no precomposed codepoints exist).
 - **Đ variants** `Đ` (U+0110), `đ` (U+0111), `Ð` (U+00D0), `ð` (U+00F0)
   all map to `Ђ`/`ђ`.
-- **Roman numerals** (`II`, `XIV`, `XX`) stay in Latin regardless of direction.
+- **Roman-numeral-shaped tokens** stay Latin when they are canonical uppercase forms
+  of at least two characters. In Latin-to-Cyrillic conversion, `MI`, `LI`, `VI`, and
+  `CI` are treated as Serbian words instead.
 - **Words with non-native letters** (Latin `w`, `x`, `y`, `q`) are skipped
   whole; treated as foreign inclusions.
-- **Quoted regions** (`"…"`, `„…"`, `“…”`, `«…»`) are preserved verbatim
-  so brand names and foreign quotes survive round-trip.
-- **URLs, emails, hashtags, @-mentions** are protected before word-splitting.
+- **Quoted regions** (`"…"`, `„…"`, `„…”`, `„…“`, `“…”`, `«…»`) are not transliterated,
+  though their Unicode representation is still normalised to NFC with the full input.
+- **Mixed-case words** longer than two characters (`iPhone`, `YouTube`, `mRNA`)
+  are not transliterated.
+- **`dj` remains two letters** because it is not interpreted as the single letter `đ`.
+- **Links with a scheme and `://`**, lowercase `www.` links, emails, hashtags,
+  and @-mentions are protected before word-splitting.
 - **NFD input** is normalised to NFC first, so text from the iOS clipboard
   transliterates correctly.
 

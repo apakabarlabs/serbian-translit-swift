@@ -2,7 +2,7 @@ PYTHON_DATA_DIR = ../serbian-translit-python/serbian_translit/data
 PYTHON_TESTS_DIR = ../serbian-translit-python/tests
 SWIFT_RESOURCES_DIR = Sources/SerbianTranslit/Resources
 SWIFT_TEST_RESOURCES_DIR = Tests/SerbianTranslitTests/Resources
-COMMENTCENSOR_VERSION ?= v0.3.2
+COMMENTCENSOR_VERSION ?= v0.3.3
 COMMENTCENSOR_ENV = .build/commentcensor
 COMMENTCENSOR = $(COMMENTCENSOR_ENV)/bin/commentcensor
 

@@ -43,8 +43,7 @@ struct Rule {
     self.preChar = data.preChar ?? [:]
     let extras = data.extrasInWord ?? ""
     let escaped = NSRegularExpression.escapedPattern(for: extras)
-    // swiftlint:disable:next force_try
-    self.wordSplitRe = try! NSRegularExpression(pattern: "(\\s+|[^\\w\(escaped)]+)")
+    self.wordSplitRe = compiledRegex("(\\s+|[^\\w\(escaped)]+)")
   }
 
   func apply(_ text: String) -> String {
