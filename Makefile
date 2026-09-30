@@ -1,11 +1,6 @@
-PYTHON_DATA_DIR = ../serbian-translit-python/serbian_translit/data
-PYTHON_TESTS_DIR = ../serbian-translit-python/tests
-SWIFT_RESOURCES_DIR = Sources/SerbianTranslit/Resources
-SWIFT_TEST_RESOURCES_DIR = Tests/SerbianTranslitTests/Resources
-
 .DEFAULT_GOAL := build
 
-.PHONY: install-tools format comments lint lint-fix test-build test docs build clean install sync-yaml
+.PHONY: install-tools format comments lint lint-fix test-build test docs build clean install
 
 install-tools:
 	brew install swiftlint swift-format
@@ -45,7 +40,3 @@ clean:
 
 install:
 	$(MAKE) install-tools
-
-sync-yaml:
-	cp $(PYTHON_DATA_DIR)/rules.yaml $(SWIFT_RESOURCES_DIR)/
-	cp $(PYTHON_TESTS_DIR)/tests.yaml $(SWIFT_TEST_RESOURCES_DIR)/
